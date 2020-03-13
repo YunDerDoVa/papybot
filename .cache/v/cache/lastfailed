@@ -1,3 +1,4 @@
 {
-  "test_papybot.py::TestFlask::()::test_papy_response": true
+  "test_papybot.py::TestApp::()::test_maps_api": true,
+  "test_papybot.py::TestApp::()::test_papy_response": true
 }

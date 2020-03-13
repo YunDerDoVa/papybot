@@ -1,2 +1,2 @@
-class WikApi:
+class WikiApi:
     pass

@@ -5,7 +5,7 @@ import json
 from papy import Papy
 from maps import MapsApi
 from wiki import WikiApi
-from parser import Parser
+from myparser import Parser
 
 class TestApp:
 
@@ -29,7 +29,7 @@ class TestApp:
 
         location = 'TODO'
 
-        assert MAPS.API.get_location('Tour Eiffel') == location
+        assert self.MAPS.API.get_location('Tour Eiffel') == location
 
 
     def test_media_wiki(self):
