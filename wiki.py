@@ -1,0 +1,2 @@
+class WikApi:
+    pass
