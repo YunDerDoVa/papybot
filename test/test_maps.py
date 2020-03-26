@@ -6,58 +6,22 @@ from maps import MapsApi
 class TestMaps:
 
     PLACE = "Tour Eiffel"
+    LOCATION = {'longitude': 0.42, 'latitude': 0.42}
+    MAPS = "Paris"
 
 
     """ MapsApi get location of a given place """
     def test_get_location(self):
         """ get_location() return a dict with geopoints """
 
-        test_location = {
-            'longitude': 0.42,
-            'latitude': 0.42,
-        }
+        maps = MapsApi(self.PLACE)
 
-        def mock_location(self):
-            self.location = test_location
+        assert 'longitude' in maps.get_location().location.keys()
+        assert 'latitude' in maps.get_location().location.keys()
 
-        monkeypatch.setattr(MapsApi, 'get_location', mock_location)
+    def test_get_maps(self):
+        """ get_maps return the name of the city """
 
         maps = MapsApi(self.PLACE)
 
-        assert maps.get_location() == test_location
-
-    def test_get_location_404(self):
-        """ If google don't found the place, it raise a 404 error """
-
-        test_location = {
-            'longitude': None,
-            'latitude': None,
-            'error': 404,
-        }
-
-        def mock_location(self):
-            self.location = test_location
-
-        monkeypatch.setattr(MapsApi, 'get_location', mock_location)
-
-        maps = MapsApi(self.PLACE)
-
-        assert maps.get_location() == test_location
-
-    def test_get_location_500(self):
-        """ If google is not callable, it raise a 500 error """
-
-        test_location = {
-            'longitude': None,
-            'latitude': None,
-            'error': 500,
-        }
-
-        def mock_location(self):
-            self.location = test_location
-
-        monkeypatch.setattr(MapsApi, 'get_location', mock_location)
-
-        maps = MapsApi(self.PLACE)
-
-        assert maps.get_location() == test_location
+        assert maps.maps != None or 'NO_MAPS' in maps.errors

@@ -21,3 +21,7 @@ class TestParser:
 
     def test_get_place_bad_question(self):
         """ If the question have not place, Parser will raise an error """
+
+        parser = Parser(self.BAD_QUESTION)
+
+        assert parser.get_place() == None
