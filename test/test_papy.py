@@ -18,6 +18,7 @@ class TestPapy:
     BAD_QUESTION = "Salut Papy ! Comment ça va ?"
 
     PLACE = "Tour Eiffel"
+    LOCATION = {'longitude': 0.42, 'latitude': 0.42}
     MAPS = "La Tour Eiffel est située à Paris"
     WIKI = "Construite par Gustave Eiffel."
 
@@ -26,28 +27,72 @@ class TestPapy:
     INTRODUCTION_WIKI = "J'ai une petite anecdote à te raconter..."
     BYE = "Tu as une autre question ? Sinon bonne journée !"
 
+    RESPONSE = {
+        'question': QUESTION,
+        'place': PLACE,
+        'location': LOCATION,
+        'maps': MAPS,
+        'wiki': WIKI,
+        'hello': HELLO,
+        'introduction_maps': INTRODUCTION_MAPS,
+        'introduction_wiki': INTRODUCTION_WIKI,
+        'bye': BYE,
+    }
+
 
     """ get_response() is a method of Papy class. He display the
     response of a previously given question. """
     def test_get_response(self, monkeypatch):
         """ If all is OK, Papy will answer with a long json. """
 
-        test_response = {
-            'question': self.QUESTION,
-            'place': self.PLACE,
-            'maps': self.MAPS,
-            'wiki': self.WIKI,
-        }
+        def mock_cogitation(mock_self):
+            mock_self.place = self.PLACE
+            mock_self.location = self.LOCATION
+            mock_self.maps = self.MAPS
+            mock_self.wiki = self.WIKI
 
-        def mock_cogitation(self):
-            self.response = test_response
+        def mock_hello(mock_self):
+            return self.HELLO
 
+        def mock_introduction_maps(mock_self):
+            return self.INTRODUCTION_MAPS
+
+        def mock_introduction_wiki(mock_self):
+            return self.INTRODUCTION_WIKI
+
+        def mock_bye(mock_self):
+            return self.BYE
+
+        """ Papy init """
+        papy = Papy(self.QUESTION)
+        assert papy.question == self.QUESTION
+
+        """ Papy cogitation """
         monkeypatch.setattr(Papy, 'cogitation', mock_cogitation)
+        papy.cogitation()
+
+        """ Papy get_response() """
+        monkeypatch.setattr(Papy, 'get_hello', mock_hello)
+        monkeypatch.setattr(Papy, 'get_introduction_maps', mock_introduction_maps)
+        monkeypatch.setattr(Papy, 'get_introduction_wiki', mock_introduction_wiki)
+        monkeypatch.setattr(Papy, 'get_bye', mock_bye)
+        assert papy.get_response() == test_response
+
+    def test_cogitation_ok(self, monkeypatch):
+        """ Papy will respectively parse, call maps_api, call wiki_api and
+        build the sentence. The cogitation() method fill the fields :
+            - place
+            - location
+            - maps
+            - wiki """
 
         papy = Papy(self.QUESTION)
         papy.cogitation()
 
-        assert papy.get_response() == test_response
+        assert type(papy.place) == type(self.PLACE)
+        assert type(papy.location) == type(self.LOCATION)
+        assert type(papy.maps) == type(self.MAPS)
+        assert type(papy.wiki) == type(self.WIKI)
 
 
     """ Papy will say hello, speak to make transitions, etc... """
