@@ -4,6 +4,9 @@ from maps import MapsApi
 
 
 class TestMaps:
+    """ Class Maps search informations about the place. It can give :
+        - the location (long, lat)
+        - the city name """
 
     PLACE = "Tour Eiffel"
     LOCATION = {'longitude': 0.42, 'latitude': 0.42}
