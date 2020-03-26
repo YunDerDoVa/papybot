@@ -7,7 +7,7 @@ class TestWiki:
     """ Class Wiki search more infos about place, it can display a short
     history about the it. """
 
-    self.PLACE = "Tour Eiffel"
+    PLACE = "Tour Eiffel"
 
     def test_get_wiki(self):
         """ get_wiki() return a string or add 'NO_WIKI' to the errors field """
