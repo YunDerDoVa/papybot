@@ -1,6 +1,7 @@
 import json
 
 from maps import MapsApi
+from wiki import WikiApi
 from myparser import Parser
 
 
@@ -8,19 +9,32 @@ class Papy:
 
     def __init__(self, question):
         self.question = question
-
+        self.errors = []
 
     def cogitation(self):
 
         parser = Parser(self.question)
         self.place = parser.get_place()
 
-        maps_api = Parser(self.place)
-        self.location = maps_api.get_location()
-        self.maps = maps_api.get_maps()
+        if self.place:
+            maps_api = MapsApi(self.place)
+            wiki_api = WikiApi(self.place)
 
-        wiki_api = WikiApi(self.place)
-        self.wiki = wiki_api.get_wiki()
+            self.location = maps_api.get_location()
+            self.maps = maps_api.get_maps()
+            self.wiki = wiki_api.get_wiki()
+
+            if not self.location:
+                self.errors.append("BAD_PLACE")
+
+            if not self.maps:
+                self.errors.append("NO_MAPS")
+
+            if not self.wiki:
+                self.errors.append("NO_WIKI")
+
+        else:
+            self.errors.append("BAD_QUESTION")
 
 
     def get_response(self):

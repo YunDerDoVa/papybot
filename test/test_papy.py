@@ -3,6 +3,9 @@ import pytest
 import json
 
 from papy import Papy
+from myparser import Parser
+from maps import MapsApi
+from wiki import WikiApi
 
 
 class TestPapy:
@@ -106,10 +109,10 @@ class TestPapy:
 
         papy = Papy(self.QUESTION)
 
-        monkeypatch.setattr('Parser.get_place', mock_place)
-        monkeypatch.setattr('MapsApi.get_location', mock_location)
-        monkeypatch.setattr('MapsApi.get_maps', mock_maps)
-        monkeypatch.setattr('WikiApi.get_wiki', mock_wiki)
+        monkeypatch.setattr(Parser, 'get_place', mock_place)
+        monkeypatch.setattr(MapsApi, 'get_location', mock_location)
+        monkeypatch.setattr(MapsApi, 'get_maps', mock_maps)
+        monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
         papy.cogitation()
 
         assert papy.place == self.PLACE
@@ -117,49 +120,70 @@ class TestPapy:
         assert papy.maps == self.MAPS
         assert papy.wiki == self.WIKI
 
-    def test_cognition_bad_question(self):
-        """ Papy will add "BAD_QUESTION" in errors field """
+    def test_cognition_bad_question(self, monkeypatch):
+        """ Papy will add "BAD_QUESTION" in errors field if place
+        is None """
+
+        def mock_place(mock_self):
+            return None
 
         papy = Papy(self.BAD_QUESTION)
+
+        monkeypatch.setattr(Parser, 'get_place', mock_place)
         papy.cogitation()
 
         assert "BAD_QUESTION" in papy.errors
 
     def test_cognition_bad_place(self, monkeypatch):
-        """ Papy will add "BAD_PLACE" in errors field """
+        """ Papy will add "BAD_PLACE" in errors field if location
+        is None """
 
         def mock_place(mock_self):
+            return self.PLACE
+
+        def mock_location(mock_self):
             return None
 
         papy = Papy(self.QUESTION)
 
-        monkeypatch.setattr('Parser.get_place', mock_place)
+        monkeypatch.setattr(Parser, 'get_place', mock_place)
+        monkeypatch.setattr(MapsApi, 'get_location', mock_location)
         papy.cogitation()
 
         assert "BAD_PLACE" in papy.errors
 
     def test_cognition_no_maps(self, monkeypatch):
-        """ Papy will add "NO_MAPS" in errors field """
+        """ Papy will add "NO_MAPS" in errors field if maps
+        is None """
+
+        def mock_place(mock_self):
+            return self.PLACE
 
         def mock_maps(mock_self):
             return None
 
         papy = Papy(self.QUESTION)
 
-        monkeypatch.setattr('MapsApi.get_maps', mock_maps)
+        monkeypatch.setattr(Parser, 'get_place', mock_place)
+        monkeypatch.setattr(MapsApi, 'get_maps', mock_maps)
         papy.cogitation()
 
         assert "NO_MAPS" in papy.errors
 
     def test_cognition_no_wiki(self, monkeypatch):
-        """ Papy will add "NO_WIKI" in errors field """
+        """ Papy will add "NO_WIKI" in errors field if wiki
+        is None """
+
+        def mock_place(mock_self):
+            return self.PLACE
 
         def mock_wiki(mock_self):
             return None
 
         papy = Papy(self.QUESTION)
 
-        monkeypatch.setattr('WikiApi.get_wiki', mock_wiki)
+        monkeypatch.setattr(Parser, 'get_place', mock_place)
+        monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
         papy.cogitation()
 
         assert "NO_WIKI" in papy.errors

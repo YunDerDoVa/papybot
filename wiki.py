@@ -1,2 +1,7 @@
 class WikiApi:
-    pass
+
+    def __init__(self, place):
+        pass
+
+    def get_wiki(self):
+        pass
