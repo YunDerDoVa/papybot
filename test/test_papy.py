@@ -135,7 +135,7 @@ class TestPapy:
         assert "BAD_QUESTION" in papy.errors
 
     def test_cognition_bad_place(self, monkeypatch):
-        """ Papy will add "BAD_PLACE" in errors field if location
+        """ Papy will add "NO_LOCATION" in errors field if location
         is None """
 
         def mock_place(mock_self):
@@ -150,7 +150,7 @@ class TestPapy:
         monkeypatch.setattr(MapsApi, 'get_location', mock_location)
         papy.cogitation()
 
-        assert "BAD_PLACE" in papy.errors
+        assert "NO_LOCATION" in papy.errors
 
     def test_cognition_no_maps(self, monkeypatch):
         """ Papy will add "NO_MAPS" in errors field if maps
@@ -193,9 +193,7 @@ class TestPapy:
     def test_get_hello(self):
         """ Papy say hello """
 
-        test_response = self.HELLO
-
-        assert type(Papy.get_hello()) == type(test_response)
+        assert type(Papy.get_hello()) == type(self.HELLO)
 
     def test_get_introduction_maps(self):
         """ Papy introduce maps """

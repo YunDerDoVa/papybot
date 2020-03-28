@@ -9,6 +9,12 @@ class TestWiki:
 
     PLACE = "Tour Eiffel"
 
+    def test_init(self):
+
+        wiki_api = WikiApi(self.PLACE)
+
+        assert wiki_api.place == self.PLACE
+
     def test_get_wiki(self):
         """ get_wiki() return a string or add 'NO_WIKI' to the errors field """
 

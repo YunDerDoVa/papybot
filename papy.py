@@ -1,4 +1,5 @@
 import json
+from random import choice
 
 from maps import MapsApi
 from wiki import WikiApi
@@ -12,6 +13,11 @@ class Papy:
         self.errors = []
 
     def cogitation(self):
+        """ Papy will fill the following fields :
+            - palce
+            - location
+            - maps
+            - wiki """
 
         parser = Parser(self.question)
         self.place = parser.get_place()
@@ -25,7 +31,7 @@ class Papy:
             self.wiki = wiki_api.get_wiki()
 
             if not self.location:
-                self.errors.append("BAD_PLACE")
+                self.errors.append("NO_LOCATION")
 
             if not self.maps:
                 self.errors.append("NO_MAPS")
@@ -38,6 +44,8 @@ class Papy:
 
 
     def get_response(self):
+        """ Papy will answer with a complete json. """
+
         response = {
             'question': self.question,
             'place': self.place,
@@ -53,17 +61,49 @@ class Papy:
         return response
 
 
-    def get_hello(self):
-        pass
+    @staticmethod
+    def get_hello():
+        """ Papy will say hello with a random sentence. """
+
+        hello = [
+            "Salut !",
+            "Bonjour fistion...",
+        ]
+
+        return choice(hello)
 
 
-    def get_introduction_maps(self):
-        pass
+    @staticmethod
+    def get_introduction_maps():
+        """ Papy will introduce the maps with a random sentence. """
+
+        introduction = [
+            "Je me rappel cet endroit...",
+            "J'y allais faire mon footing autrefois !",
+        ]
+
+        return choice(introduction)
 
 
-    def get_introduction_wiki(self):
-        pass
+    @staticmethod
+    def get_introduction_wiki():
+        """ Papy will introduce the wiki with a random sentence. """
+
+        introduction = [
+            "Connais-tu l'histoire de ce lieu ?",
+            "J'ai une anecdote assez insolite à te raconter...",
+        ]
+
+        return choice(introduction)
 
 
-    def get_bye(self):
-        pass
+    @staticmethod
+    def get_bye():
+        """ Papy will say bye with a random sentence. """
+
+        bye = [
+            "Allé n'oublie pas de me ramener du Schnaps la prochaine fois !",
+            "Après je ne me rappel plus très bien de la suite...",
+        ]
+
+        return choice(bye)
