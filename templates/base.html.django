@@ -2,39 +2,45 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Papybot</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/master.css') }}">
     <script src="https://kit.fontawesome.com/569f6a16fb.js" crossorigin="anonymous"></script>
   </head>
   <body>
 
     <header>
-      <nav>
-        Navbar
+      <nav class="navbar shadow">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+        <h1 class="d-none d-md-block">PapyBot, le Papy qui voyage !</h1>
       </nav>
-      Header
     </header>
 
-    <section>
-      {% block body %}{% endblock body %}
-    </section>
+    <main class="container">
+      {% block main %}{% endblock main %}
+    </main>
 
     <footer>
-      <div class="row">
-        <div class="col-3">
-          <p>
-            Arthur NEYER
-          </p>
-        </div>
-        <div class="col-3">
-          <p>
-            <a href="#">LinkedIn</a>
-          </p>
-        </div>
-        <div class="col-6">
-          <p>
-            Dépôt disponible sur <a href="#">GitHub</a>
-          </p>
+      <div class="container">
+        <div class="row py-3">
+          <div class="col-3">
+            <p>
+              Arthur NEYER
+            </p>
+          </div>
+          <div class="col-3">
+            <p>
+              <a href="#">LinkedIn</a>
+            </p>
+          </div>
+          <div class="col-6">
+            <p>
+              Dépôt disponible sur <a href="#">GitHub</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

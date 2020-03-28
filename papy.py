@@ -104,6 +104,7 @@ class Papy:
         bye = [
             "Allé n'oublie pas de me ramener du Schnaps la prochaine fois !",
             "Après je ne me rappel plus très bien de la suite...",
+            "Tu m'enverras une carte postale !",
         ]
 
         return choice(bye)

@@ -1,0 +1,36 @@
+{% extends "base.html.django" %}
+
+{% block main %}
+
+  <div class="papy-speak">
+    <img class="monopoly" src="{{ url_for('static', filename='img/monopoly.jfif') }}" alt="Papy">
+    <div class="papy-words">
+      <h1>Dis-moi tout !</h1>
+      <p>Je réponds rapidement...</p>
+    </div>
+  </div>
+
+  <form class="ask-papy" action="." method="post">
+    <div class="single-line-input">
+      <input class="question" type="text" name="question" value="">
+      <button class="pc-submit d-none d-md-block" type="submit" name="submit">envoyer</button>
+    </div>
+    <button class="mobile-submit d-block d-md-none" type="submit" name="submit">envoyer</button>
+  </form>
+
+  <div class="papy-speak">
+    <img class="monopoly" src="{{ url_for('static', filename='img/monopoly.jfif') }}" alt="Papy">
+    <div class="papy-words">
+      <h1>La tour eiffel ! Quel beau lieu...</h1>
+      <p>
+        Je me rappel la fois où j'y ai perdu mes clés. Mais t'ais-je déjà
+        raconté l'histoire de Paris ?
+        <br>
+        Blablabla blablabla blablabla blablabla blablabla blablabla blablabla
+        blablabla blablabla blablabla blablabla blablabla blablabla blablabla
+        blablabla blablabla blablabla blablabla blablabla blablabla blablabla.
+      </p>
+    </div>
+  </div>
+
+{% endblock main %}
