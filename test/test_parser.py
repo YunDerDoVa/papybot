@@ -12,6 +12,13 @@ class TestParser:
     BAD_QUESTION = "Salut Papy ! Comment ça va ?"
     PLACE = "Tour Eiffel"
 
+    def test_init(self):
+        """ Init Parser with the question """
+
+        parser = Parser(self.GOOD_QUESTION)
+
+        assert parser.question == self.GOOD_QUESTION
+
     def test_get_place(self):
         """ If all is OK, Parser will return the name of the place. """
 

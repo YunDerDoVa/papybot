@@ -82,7 +82,7 @@ class TestPapy:
         monkeypatch.setattr(Papy, 'get_introduction_wiki', mock_introduction_wiki)
         monkeypatch.setattr(Papy, 'get_bye', mock_bye)
 
-        assert papy.get_response() == test_response
+        assert papy.get_response() == self.RESPONSE
 
     def test_cogitation_ok(self, monkeypatch):
         """ Papy will respectively parse, call maps_api, call wiki_api and
