@@ -8,13 +8,26 @@ class MapsApi:
     def get_location(self):
         """ This method call the Maps Api and return a geopoint. """
 
-        self.errors.append("NO_LOCATION")
-        return None
+        geopoint = self.get_geopoint()
+
+        if not geopoint:
+            self.errors.append("NO_LOCATION")
+
+        return geopoint
 
     def get_maps(self):
         """ This method call the Maps Api and return the name of the city
         where is the place. """
 
+        city = self.get_city()
 
-        self.errors.append("NO_MAPS")
-        return None
+        if not city:
+            self.errors.append("NO_MAPS")
+
+        return city
+
+    def get_city(self):
+        pass
+
+    def get_geopoint(self):
+        pass

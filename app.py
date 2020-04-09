@@ -12,5 +12,11 @@ def home():
     return render_template('home.html.django')
 
 
+#ajax
+#jsonify
+def ajax():
+    return render_template('home.html.django')
+
+
 if __name__ == "__main__":
     app.run()

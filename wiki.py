@@ -9,5 +9,12 @@ class WikiApi:
         """ This method call the MediaWiki Api and return a short history
         about the place. """
 
-        self.errors.append("NO_WIKI")
-        return None
+        story = self.get_story()
+
+        if not story:
+            self.errors.append("NO_WIKI")
+
+        return story
+
+    def get_story(self):
+        pass

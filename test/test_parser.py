@@ -9,9 +9,9 @@ class TestParser:
         - the place """
 
     GOOD_QUESTION_1 = "Salut Papy ! Tu sais où est la Tour Eiffel ?"
-    GOOD_QUESTION_2 = "Salut Papy ! Tu sais où est la Tour Eiffel ? STP"
+    GOOD_QUESTION_2 = "Salut Papy ! Tu sais où se situe la Tour Eiffel ? STP"
     GOOD_QUESTION_3 = "Salut Papy ! As-tu l'adresse de la Tour Eiffel ?"
-    GOOD_QUESTION_4 = "Où est la Tour Eiffel ?"
+    GOOD_QUESTION_4 = "Où se trouve la Tour Eiffel ?"
     BAD_QUESTION = "Salut Papy ! Comment ça va ?"
     PLACE = "la tour eiffel"
 

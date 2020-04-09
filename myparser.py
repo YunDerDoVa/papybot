@@ -6,6 +6,8 @@ class Parser:
     QUESTION_WORDS = [
         "où est ",
         "adresse de ",
+        "où se situe ",
+        "où se trouve ",
     ]
 
     def __init__(self, question):
