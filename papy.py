@@ -42,6 +42,10 @@ class Papy:
         else:
             self.errors.append("BAD_QUESTION")
 
+            self.location = None
+            self.maps = None
+            self.wiki = None
+
 
     def get_response(self):
         """ Papy will answer with a complete json. """

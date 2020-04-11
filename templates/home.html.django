@@ -10,34 +10,26 @@
     </div>
   </div>
 
-  <form class="ask-papy" action="." method="post">
+  <div class="ask-papy">
     <div class="single-line-input">
-      <input class="question" type="text" name="question" value="">
-      <button class="pc-submit d-none d-md-block" type="submit" name="submit">envoyer</button>
+      <input id="question_input" class="question" type="text" name="question" value="">
+      <button class="pc-submit d-none d-md-block" onclick="ajax_func()">envoyer</button>
     </div>
-    <button class="mobile-submit d-block d-md-none" type="submit" name="submit">envoyer</button>
-  </form>
-
-  <div class="papy-speak">
-    <img class="monopoly" src="{{ url_for('static', filename='img/monopoly.jfif') }}" alt="Papy">
-    <div class="papy-words">
-      <h1>La tour eiffel ! Quel beau lieu...</h1>
-      <p>
-        Je me rappel la fois où j'y ai perdu mes clés. Mais t'ais-je déjà
-        raconté l'histoire de Paris ?
-        <br>
-        Blablabla blablabla blablabla blablabla blablabla blablabla blablabla
-        blablabla blablabla blablabla blablabla blablabla blablabla blablabla
-        blablabla blablabla blablabla blablabla blablabla blablabla blablabla.
-      </p>
-    </div>
+    <button class="mobile-submit d-block d-md-none" onclick="ajax_func()">envoyer</button>
   </div>
 
-  <div class="papy-speak">
+  <div id="responses_zone">
+
+  </div>
+
+  <div id="speak_template" class="papy-speak">
     <img class="monopoly" src="{{ url_for('static', filename='img/monopoly.jfif') }}" alt="Papy">
     <div class="papy-words">
-      <h1>La tour eiffel ! Quel beau lieu...</h1>
-      <p>
+      <small class="user-question"></small>
+      <h1 class="papy-title">La tour eiffel ! Quel beau lieu...</h1>
+      <p class="maps-intro"></p>
+      <div class="osm-maps"></div>
+      <p class="papy-para">
         Je me rappel la fois où j'y ai perdu mes clés. Mais t'ais-je déjà
         raconté l'histoire de Paris ?
         <br>

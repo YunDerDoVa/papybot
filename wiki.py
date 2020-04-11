@@ -1,3 +1,6 @@
+import wikipedia
+import random
+
 class WikiApi:
 
     def __init__(self, place):
@@ -17,4 +20,12 @@ class WikiApi:
         return story
 
     def get_story(self):
-        pass
+        """ This method call wiki api ans return a short history """
+
+        wikipedia.set_lang('fr')
+
+        search = wikipedia.search(self.place)
+
+        summary = wikipedia.summary(search[random.randint(0, len(search))])
+
+        return summary

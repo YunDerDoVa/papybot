@@ -1,3 +1,5 @@
+import wikipedia
+
 class MapsApi:
 
     def __init__(self, place):
@@ -30,4 +32,12 @@ class MapsApi:
         pass
 
     def get_geopoint(self):
-        pass
+
+        page = wikipedia.page(title=self.place)
+
+        geopoint = {
+            'latitude': float(page.coordinates[0]),
+            'longitude': float(page.coordinates[1])
+        }
+
+        return geopoint
