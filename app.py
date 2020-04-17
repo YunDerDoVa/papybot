@@ -32,6 +32,7 @@ def ajax():
         location = dict['location'],
         maps = dict['maps'],
         wiki = dict['wiki'],
+        wiki_link = dict['wiki_link'],
         hello = dict['hello'],
         introduction_maps = dict['introduction_maps'],
         introduction_wiki = dict['introduction_wiki'],

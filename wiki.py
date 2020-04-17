@@ -8,24 +8,30 @@ class WikiApi:
         self.place = place
         self.errors = []
 
+        wikipedia.set_lang('fr')
+        search = wikipedia.search(self.place)
+        self.title = search[random.randint(0, len(search)-1)]
+        self.page = wikipedia.page(title=self.title)
+
     def get_wiki(self):
         """ This method call the MediaWiki Api and return a short history
         about the place. """
 
-        story = self.get_story()
+        story, link = self.get_story()
 
         if not story:
             self.errors.append("NO_WIKI")
 
-        return story
+        return story, link
 
     def get_story(self):
         """ This method call wiki api ans return a short history """
 
-        wikipedia.set_lang('fr')
+        if self.page:
+            summary = self.page.summary
+            link = "https://fr.wikipedia.org/wiki/" + self.title
+        else:
+            summary = None
+            link = None
 
-        search = wikipedia.search(self.place)
-
-        summary = wikipedia.summary(search[random.randint(0, len(search))])
-
-        return summary
+        return summary, link

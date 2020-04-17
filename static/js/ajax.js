@@ -2,21 +2,25 @@ function add_response(responseText) {
   var zone = document.getElementById("responses_zone");
   var json = JSON.parse(responseText);
 
-
+  //Leaflet
   var speak = document.getElementById("speak_template").cloneNode(true);
   speak.id = null;
+  speak.classList.add('papy-speak');
 
   var question = speak.getElementsByClassName("user-question")[0];
-  question.innerHTML = json.question;
+  question.textContent = json.question;
 
   var title = speak.getElementsByClassName("papy-title")[0];
-  title.innerHTML = json.hello;
+  title.textContent = json.hello;
 
   var maps_intro = speak.getElementsByClassName("maps-intro")[0];
-  maps_intro.innerHTML = json.introduction_maps;
+  maps_intro.textContent = json.introduction_maps;
 
   var para = speak.getElementsByClassName("papy-para")[0];
-  para.innerHTML = json.introduction_wiki + ' ' + json.wiki + ' ' + json.bye;
+  para.textContent = json.introduction_wiki + ' ' + json.wiki + ' ' + json.bye;
+
+  var wiki_link = speak.getElementsByClassName("wiki-link")[0];
+  wiki_link.href = json.wiki_link;
 
   zone.appendChild(speak);
 }

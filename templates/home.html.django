@@ -22,7 +22,7 @@
 
   </div>
 
-  <div id="speak_template" class="papy-speak">
+  <div id="speak_template" class="">
     <img class="monopoly" src="{{ url_for('static', filename='img/monopoly.jfif') }}" alt="Papy">
     <div class="papy-words">
       <small class="user-question"></small>
@@ -37,6 +37,7 @@
         blablabla blablabla blablabla blablabla blablabla blablabla blablabla
         blablabla blablabla blablabla blablabla blablabla blablabla blablabla.
       </p>
+      <a class="wiki-link" href="#">voir plus</a>
     </div>
   </div>
 
