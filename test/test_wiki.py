@@ -9,6 +9,7 @@ class TestWiki:
 
     PLACE = "Tour Eiffel"
     STORY = "La Tour Eiffel a été construite par Gustave Eiffel."
+    LINK = "https://link.com"
 
     def test_init(self):
 
@@ -20,7 +21,7 @@ class TestWiki:
         """ get_wiki() return a string or add 'NO_WIKI' to the errors field """
 
         def mock_get_story(mock_self):
-            return self.STORY
+            return (self.STORY, self.LINK)
 
         wiki = WikiApi(self.PLACE)
 
@@ -28,13 +29,13 @@ class TestWiki:
 
         story = wiki.get_wiki()
 
-        assert story == self.STORY
+        assert story == (self.STORY, self.LINK)
 
     def test_get_wiki_no_wiki(self, monkeypatch):
         """ get_wiki() return a string or add 'NO_WIKI' to the errors field """
 
         def mock_get_story(mock_self):
-            return None
+            return None, None
 
         wiki = WikiApi(self.PLACE)
 

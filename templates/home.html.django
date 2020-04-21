@@ -13,9 +13,18 @@
   <div class="ask-papy">
     <div class="single-line-input">
       <input id="question_input" class="question" type="text" name="question" value="">
-      <button class="pc-submit d-none d-md-block" onclick="ajax_func()">envoyer</button>
+      <button class="ajax-button pc-submit d-none d-md-block" onclick="ajax_func()">envoyer</button>
     </div>
-    <button class="mobile-submit d-block d-md-none" onclick="ajax_func()">envoyer</button>
+    <button class="ajax-button mobile-submit d-block d-md-none" onclick="ajax_func()">envoyer</button>
+
+    <div id="loading_anim" class="papy-loading">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div id="errors"></div>
+
   </div>
 
   <div id="responses_zone">
@@ -28,7 +37,7 @@
       <small class="user-question"></small>
       <h1 class="papy-title">La tour eiffel ! Quel beau lieu...</h1>
       <p class="maps-intro"></p>
-      <div class="osm-maps"></div>
+      <div class="maps-leaflet"></div>
       <p class="papy-para">
         Je me rappel la fois où j'y ai perdu mes clés. Mais t'ais-je déjà
         raconté l'histoire de Paris ?

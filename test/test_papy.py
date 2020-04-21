@@ -24,6 +24,7 @@ class TestPapy:
     LOCATION = {'longitude': 0.42, 'latitude': 0.42}
     MAPS = "La Tour Eiffel est située à Paris"
     WIKI = "Construite par Gustave Eiffel."
+    WIKI_LINK = "https://link.com"
 
     HELLO = "Salut !"
     INTRODUCTION_MAPS = "Je me souviens de cet endroit."
@@ -36,6 +37,7 @@ class TestPapy:
         'location': LOCATION,
         'maps': MAPS,
         'wiki': WIKI,
+        'wiki_link': WIKI_LINK,
         'hello': HELLO,
         'introduction_maps': INTRODUCTION_MAPS,
         'introduction_wiki': INTRODUCTION_WIKI,
@@ -58,7 +60,7 @@ class TestPapy:
             mock_self.place = self.PLACE
             mock_self.location = self.LOCATION
             mock_self.maps = self.MAPS
-            mock_self.wiki = self.WIKI
+            mock_self.wiki = [self.WIKI, self.WIKI_LINK]
 
         def mock_hello(mock_self):
             return self.HELLO

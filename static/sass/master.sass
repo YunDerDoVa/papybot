@@ -17,6 +17,7 @@ nav.navbar
   width: 100%
   height: 64px
   padding: 16px
+  z-index: 99
 
   background-color: $primary_color
   color: white
@@ -53,9 +54,18 @@ main
 
   & .papy-speak
     width: 100%
+    height: auto
     padding: 12px
     display: flex
     align-items: flex-start
+
+    opacity: 1
+
+    transition: 2.1s
+    overflow: hidden
+    &.empty
+      height: 0
+      opacity: 0
 
     & img.monopoly
       width: 64px
@@ -112,6 +122,18 @@ main
       transition-duration: 0.42s
       &:hover
         background-color: $primary_color
+
+    & .maps-leaflet
+      width: 512px
+      height: 256px
+      z-index: 0
+
+    & .papy-loading
+      display: none
+      justify-content: center
+      align-items: center
+      margin-top: 12px
+      font-size: 24px
 
 
 footer

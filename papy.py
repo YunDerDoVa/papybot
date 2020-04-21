@@ -44,7 +44,7 @@ class Papy:
 
             self.location = None
             self.maps = None
-            self.wiki = None
+            self.wiki = [None, None]
 
 
     def get_response(self):
@@ -73,6 +73,8 @@ class Papy:
         hello = [
             "Salut !",
             "Bonjour fistion...",
+            "Quelle joie de te revoir !",
+            "Salut la jeunesse !",
         ]
 
         return choice(hello)
@@ -85,6 +87,8 @@ class Papy:
         introduction = [
             "Je me rappel cet endroit...",
             "J'y allais faire mon footing autrefois !",
+            "Laisse-moi te chercher ma carte... Ah ! Voilà ! Elle est là...",
+            "Penses-tu pouvoir retrouver cet endroit ?",
         ]
 
         return choice(introduction)
@@ -97,6 +101,8 @@ class Papy:
         introduction = [
             "Connais-tu l'histoire de ce lieu ?",
             "J'ai une anecdote assez insolite à te raconter...",
+            "J'ai, à propos de cet endroit, un belle histoire à te compter...",
+            "D'ailleurs, j'ai une anecdote à te raconter !",
         ]
 
         return choice(introduction)
@@ -110,6 +116,7 @@ class Papy:
             "Allé n'oublie pas de me ramener du Schnaps la prochaine fois !",
             "Après je ne me rappel plus très bien de la suite...",
             "Tu m'enverras une carte postale !",
+            "Bon je dois me reposer maintenant, à la prochaine !",
         ]
 
         return choice(bye)
