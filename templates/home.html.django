@@ -13,9 +13,13 @@
   <div class="ask-papy">
     <div class="single-line-input">
       <input id="question_input" class="question" type="text" name="question" value="">
-      <button class="ajax-button pc-submit d-none d-md-block" onclick="ajax_func()">envoyer</button>
+      <button class="ajax-button pc-submit d-none d-md-block" onclick="ajax_func()">
+        <p>envoyer</p>
+      </button>
     </div>
-    <button class="ajax-button mobile-submit d-block d-md-none" onclick="ajax_func()">envoyer</button>
+    <button class="ajax-button mobile-submit d-block d-md-none" onclick="ajax_func()">
+      <p>envoyer</p>
+    </button>
 
     <div id="loading_anim" class="papy-loading">
       <div class="spinner-border text-primary" role="status">
@@ -23,7 +27,7 @@
       </div>
     </div>
 
-    <div id="errors"></div>
+    <div id="error_message" class="error-message"></div>
 
   </div>
 

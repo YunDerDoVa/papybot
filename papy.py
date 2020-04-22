@@ -11,6 +11,7 @@ class Papy:
     def __init__(self, question):
         self.question = question
         self.errors = []
+        self.error_message = None
 
     def cogitation(self):
         """ Papy will fill the following fields :
@@ -61,13 +62,28 @@ class Papy:
             'introduction_maps': self.get_introduction_maps(),
             'introduction_wiki': self.get_introduction_wiki(),
             'bye': self.get_bye(),
+            'errors': self.errors,
+            'error_message': self.error_message,
         }
 
         return response
 
 
-    @staticmethod
-    def get_hello():
+    def get_response_dict(self):
+
+        self.cogitation()
+
+        if len(self.errors) > 0:
+            for error in self.errors:
+                if error == 'BAD_QUESTION':
+                    self.error_message = self.get_bad_question_message()
+        else:
+            self.errors = None
+
+        return self.get_response()
+
+
+    def get_hello(self):
         """ Papy will say hello with a random sentence. """
 
         hello = [
@@ -80,8 +96,7 @@ class Papy:
         return choice(hello)
 
 
-    @staticmethod
-    def get_introduction_maps():
+    def get_introduction_maps(self):
         """ Papy will introduce the maps with a random sentence. """
 
         introduction = [
@@ -94,8 +109,7 @@ class Papy:
         return choice(introduction)
 
 
-    @staticmethod
-    def get_introduction_wiki():
+    def get_introduction_wiki(self):
         """ Papy will introduce the wiki with a random sentence. """
 
         introduction = [
@@ -108,8 +122,7 @@ class Papy:
         return choice(introduction)
 
 
-    @staticmethod
-    def get_bye():
+    def get_bye(self):
         """ Papy will say bye with a random sentence. """
 
         bye = [
@@ -120,3 +133,15 @@ class Papy:
         ]
 
         return choice(bye)
+
+
+    def get_bad_question_message(self):
+        """ Papy will say he don't understand when a BAD_QUESTION error
+        append """
+
+        message = [
+            "Je n'ai pas très bien entendu... Peux-tu reformuler ta phrase ?",
+            "Je ne suis plus tout jeune, peux-tu reformuler ta question ?",
+        ]
+
+        return choice(message)

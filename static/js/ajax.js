@@ -13,8 +13,8 @@ function add_response(responseText) {
   var zone = document.getElementById("responses_zone");
   var json = JSON.parse(responseText);
 
-  if (json.errors) {
-    document.getElementById("errors").textContent = "Errors : " + String(json.errors);
+  if (json.error_message) {
+    document.getElementById("error_message").textContent = json.error_message;
   }
 
   function setMaps() {
@@ -80,7 +80,7 @@ function ajax_func() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 1) {
 
-      document.getElementById("errors").textContent = null;
+      document.getElementById("error_message").textContent = null;
 
       loading_anim("flex");
       ajax_button("False");
@@ -101,7 +101,7 @@ function ajax_func() {
 
     }
     if (this.readyState == 4 && this.status != 200) {
-      document.getElementById("errors").textContent = "Error " + String(this.status);
+      document.getElementById("error_message").textContent = "Error " + String(this.status);
     }
   };
 

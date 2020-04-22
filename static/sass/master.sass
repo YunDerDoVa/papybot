@@ -6,6 +6,7 @@ $secondary_color_alpha: rgba(80, 149, 80, 0.42)
 
 a
   color: inherit
+  transition: 0.42s
   &:hover
     color: $secondary_color
     text-decoration: inherit
@@ -64,6 +65,7 @@ main
     transition: 2.1s
     overflow: hidden
     &.empty
+      display: none
       height: 0
       opacity: 0
 
@@ -92,8 +94,8 @@ main
     & .single-line-input
       width: 100%
       height: 48px
-      border: 1px solid black
       border-radius: 24px
+      box-shadow: 0 0 12px $secondary_color_alpha
       overflow: hidden
 
       background-color: $secondary_color_alpha
@@ -110,18 +112,25 @@ main
     & button.pc-submit, button.mobile-submit
       width: 194px
       height: 48px
-      border: 1px solid black
+      border: 2px solid $secondary_color
       border-radius: 24px
       background-color: $secondary_color
       color: white
 
-      font-size: 24px
-      font-weight: bold
-      line-height: 24px
+      display: flex
+      align-items: center
 
       transition-duration: 0.42s
       &:hover
-        background-color: $primary_color
+        background-color: white
+        color: $secondary_color
+
+      & p
+        margin: auto
+
+        text-transform: uppercase
+        font-size: 24px
+        font-weight: bold
 
     & .maps-leaflet
       width: 512px
@@ -134,6 +143,11 @@ main
       align-items: center
       margin-top: 12px
       font-size: 24px
+
+  & .error-message
+    width: 100%
+    padding: 12px
+    font-size: 24px
 
 
 footer

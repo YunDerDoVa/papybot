@@ -22,17 +22,7 @@ def ajax():
 
     papy = Papy(question)
 
-    papy.cogitation()
-
-    if papy.errors:
-        for i in range(len(papy.errors)):
-            if papy.errors[i] == 'NO_MAPS':
-                papy.errors.pop(i)
-
-        if len(papy.errors) == 0:
-            papy.errors = None
-
-    dict = papy.get_response()
+    dict = papy.get_response_dict()
 
     return jsonify(
         question = dict['question'],
@@ -45,7 +35,8 @@ def ajax():
         introduction_maps = dict['introduction_maps'],
         introduction_wiki = dict['introduction_wiki'],
         bye = dict['bye'],
-        errors = papy.errors,
+        errors = dict['errors'],
+        error_message = dict['error_message'],
     )
 
 
