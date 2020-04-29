@@ -42,6 +42,8 @@ class TestPapy:
         'introduction_maps': INTRODUCTION_MAPS,
         'introduction_wiki': INTRODUCTION_WIKI,
         'bye': BYE,
+        'errors': [],
+        'error_message': None,
     }
 
 
@@ -146,10 +148,14 @@ class TestPapy:
         def mock_location(mock_self):
             return None
 
+        def mock_wiki(mock_self):
+            return self.WIKI
+
         papy = Papy(self.QUESTION)
 
         monkeypatch.setattr(Parser, 'get_place', mock_place)
         monkeypatch.setattr(MapsApi, 'get_location', mock_location)
+        monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
         papy.cogitation()
 
         assert "NO_LOCATION" in papy.errors
@@ -164,10 +170,14 @@ class TestPapy:
         def mock_maps(mock_self):
             return None
 
+        def mock_wiki(mock_self):
+            return self.WIKI
+
         papy = Papy(self.QUESTION)
 
         monkeypatch.setattr(Parser, 'get_place', mock_place)
         monkeypatch.setattr(MapsApi, 'get_maps', mock_maps)
+        monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
         papy.cogitation()
 
         assert "NO_MAPS" in papy.errors
@@ -179,12 +189,16 @@ class TestPapy:
         def mock_place(mock_self):
             return self.PLACE
 
+        def mock_maps(mock_self):
+            return self.MAPS
+
         def mock_wiki(mock_self):
             return None
 
         papy = Papy(self.QUESTION)
 
         monkeypatch.setattr(Parser, 'get_place', mock_place)
+        monkeypatch.setattr(MapsApi, 'get_maps', mock_maps)
         monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
         papy.cogitation()
 
@@ -195,25 +209,33 @@ class TestPapy:
     def test_get_hello(self):
         """ Papy say hello """
 
-        assert type(Papy.get_hello()) == type(self.HELLO)
+        papy = Papy(self.QUESTION)
+
+        assert type(papy.get_hello()) == type(self.HELLO)
 
     def test_get_introduction_maps(self):
         """ Papy introduce maps """
 
         test_response = self.INTRODUCTION_MAPS
 
-        assert type(Papy.get_introduction_maps()) == type(test_response)
+        papy = Papy(self.QUESTION)
+
+        assert type(papy.get_introduction_maps()) == type(test_response)
 
     def test_get_introduction_wiki(self):
         """ Papy introduce wiki """
 
         test_response = self.INTRODUCTION_WIKI
 
-        assert type(Papy.get_introduction_wiki()) == type(test_response)
+        papy = Papy(self.QUESTION)
+
+        assert type(papy.get_introduction_wiki()) == type(test_response)
 
     def test_get_bye(self):
         """ Papy say bye """
 
         test_response = self.BYE
 
-        assert type(Papy.get_bye()) == type(test_response)
+        papy = Papy(self.QUESTION)
+
+        assert type(papy.get_bye()) == type(test_response)
