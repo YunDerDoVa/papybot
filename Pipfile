@@ -10,6 +10,7 @@ flask = "*"
 flask-script = "*"
 pytest = "*"
 wikipedia = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
