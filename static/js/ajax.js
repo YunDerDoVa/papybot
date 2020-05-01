@@ -23,8 +23,10 @@ function add_response(responseText) {
 
     var maps = speak.getElementsByClassName("maps-leaflet")[0];
     maps.id = "leaflet_" + String(speak.id);
-    maps.style.width = "512px";
+    maps.style.maxWidth = "512px";
+    maps.style.width = "100%";
     maps.style.height = "256px";
+    maps.style.zIndex = "0";
 
     var latitude = parseFloat(json.location.latitude);
     var longitude = parseFloat(json.location.longitude);
