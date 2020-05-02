@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="ask-papy">
+  <form class="ask-papy" action="javascript:ajax_func()">
     <div class="single-line-input">
       <input id="question_input" class="question" type="text" name="question" value="">
       <button class="ajax-button pc-submit d-none d-md-block" onclick="ajax_func()">
@@ -29,7 +29,7 @@
 
     <div id="error_message" class="error-message"></div>
 
-  </div>
+  </form>
 
   <div id="responses_zone">
 

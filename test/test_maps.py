@@ -48,33 +48,3 @@ class TestMaps:
         geopoint = maps_api.get_location()
 
         assert "NO_LOCATION" in maps_api.errors
-
-
-    def test_get_maps(self, monkeypatch):
-        """ get_maps return the name of the city """
-
-        def mock_get_city(mock_self):
-            return self.MAPS
-
-        maps_api = MapsApi(self.PLACE)
-
-        monkeypatch.setattr(MapsApi, 'get_city', mock_get_city)
-
-        city = maps_api.get_maps()
-
-        assert city == self.MAPS
-
-
-    def test_get_maps_no_maps(self, monkeypatch):
-        """ get_maps return the name of the city """
-
-        def mock_get_city(mock_self):
-            return None
-
-        maps_api = MapsApi(self.PLACE)
-
-        monkeypatch.setattr(MapsApi, 'get_city', mock_get_city)
-
-        city = maps_api.get_maps()
-
-        assert "NO_MAPS" in maps_api.errors

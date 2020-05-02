@@ -28,14 +28,10 @@ class Papy:
             wiki_api = WikiApi(self.place)
 
             self.location = maps_api.get_location()
-            self.maps = maps_api.get_maps()
             self.wiki = wiki_api.get_wiki()
 
             if not self.location:
                 self.errors.append("NO_LOCATION")
-
-            if not self.maps:
-                self.errors.append("NO_MAPS")
 
             if not self.wiki:
                 self.errors.append("NO_WIKI")
@@ -44,7 +40,6 @@ class Papy:
             self.errors.append("BAD_QUESTION")
 
             self.location = None
-            self.maps = None
             self.wiki = [None, None]
 
 
@@ -55,7 +50,6 @@ class Papy:
             'question': self.question,
             'place': self.place,
             'location': self.location,
-            'maps': self.maps,
             'wiki': self.wiki[0],
             'wiki_link': self.wiki[1],
             'hello': self.get_hello(),

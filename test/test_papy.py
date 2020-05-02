@@ -22,7 +22,6 @@ class TestPapy:
 
     PLACE = "Tour Eiffel"
     LOCATION = {'longitude': 0.42, 'latitude': 0.42}
-    MAPS = "La Tour Eiffel est située à Paris"
     WIKI = "Construite par Gustave Eiffel."
     WIKI_LINK = "https://link.com"
 
@@ -35,7 +34,6 @@ class TestPapy:
         'question': QUESTION,
         'place': PLACE,
         'location': LOCATION,
-        'maps': MAPS,
         'wiki': WIKI,
         'wiki_link': WIKI_LINK,
         'hello': HELLO,
@@ -61,7 +59,6 @@ class TestPapy:
         def mock_cogitation(mock_self):
             mock_self.place = self.PLACE
             mock_self.location = self.LOCATION
-            mock_self.maps = self.MAPS
             mock_self.wiki = [self.WIKI, self.WIKI_LINK]
 
         def mock_hello(mock_self):
@@ -96,7 +93,6 @@ class TestPapy:
         build the sentence. The cogitation() method fill the fields :
             - place
             - location
-            - maps
             - wiki """
 
         def mock_place(mock_self):
@@ -105,9 +101,6 @@ class TestPapy:
         def mock_location(mock_self):
             return self.LOCATION
 
-        def mock_maps(mock_self):
-            return self.MAPS
-
         def mock_wiki(mock_self):
             return self.WIKI
 
@@ -115,13 +108,11 @@ class TestPapy:
 
         monkeypatch.setattr(Parser, 'get_place', mock_place)
         monkeypatch.setattr(MapsApi, 'get_location', mock_location)
-        monkeypatch.setattr(MapsApi, 'get_maps', mock_maps)
         monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
         papy.cogitation()
 
         assert papy.place == self.PLACE
         assert papy.location == self.LOCATION
-        assert papy.maps == self.MAPS
         assert papy.wiki == self.WIKI
 
     def test_cognition_bad_question(self, monkeypatch):
@@ -160,28 +151,6 @@ class TestPapy:
 
         assert "NO_LOCATION" in papy.errors
 
-    def test_cognition_no_maps(self, monkeypatch):
-        """ Papy will add "NO_MAPS" in errors field if maps
-        is None """
-
-        def mock_place(mock_self):
-            return self.PLACE
-
-        def mock_maps(mock_self):
-            return None
-
-        def mock_wiki(mock_self):
-            return self.WIKI
-
-        papy = Papy(self.QUESTION)
-
-        monkeypatch.setattr(Parser, 'get_place', mock_place)
-        monkeypatch.setattr(MapsApi, 'get_maps', mock_maps)
-        monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
-        papy.cogitation()
-
-        assert "NO_MAPS" in papy.errors
-
     def test_cognition_no_wiki(self, monkeypatch):
         """ Papy will add "NO_WIKI" in errors field if wiki
         is None """
@@ -189,16 +158,12 @@ class TestPapy:
         def mock_place(mock_self):
             return self.PLACE
 
-        def mock_maps(mock_self):
-            return self.MAPS
-
         def mock_wiki(mock_self):
             return None
 
         papy = Papy(self.QUESTION)
 
         monkeypatch.setattr(Parser, 'get_place', mock_place)
-        monkeypatch.setattr(MapsApi, 'get_maps', mock_maps)
         monkeypatch.setattr(WikiApi, 'get_wiki', mock_wiki)
         papy.cogitation()
 

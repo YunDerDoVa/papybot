@@ -14,7 +14,8 @@ function add_response(responseText) {
   var json = JSON.parse(responseText);
 
   if (json.error_message) {
-    document.getElementById("error_message").textContent = json.error_message;
+    var message = json.error_message + " (" + String(json.errors) + ")";
+    document.getElementById("error_message").textContent = message;
   }
 
   function setMaps() {
@@ -103,7 +104,8 @@ function ajax_func() {
 
     }
     if (this.readyState == 4 && this.status != 200) {
-      document.getElementById("error_message").textContent = "Error " + String(this.status);
+      const papywords = "Je te prie de m'excuser, j'ai besoin de me reposer...";
+      document.getElementById("error_message").textContent = papywords + " (Error " + String(this.status) + ")";
     }
   };
 

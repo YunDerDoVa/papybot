@@ -1,14 +1,22 @@
 import re
 
+from stopwords import STOPWORDS
+
 
 class Parser:
 
-    QUESTION_WORDS = [
-        "où est ",
-        "adresse de ",
-        "où se situe ",
-        "où se trouve ",
+    SUBJECTS = [
+        'je',
+        'tu',
+        'il', 'elle', 'on',
+        'nous',
+        'vous',
+        'ils', 'elles',
     ]
+
+    PUNCTUATIONS = ['.', '?', '!', ':', ';']
+
+    OTHERS_WORDS = ['salut', 'papy', 'sais']
 
     def __init__(self, question):
 
@@ -16,15 +24,24 @@ class Parser:
 
     def get_place(self):
 
-        place = None
+        place = self._filter_question()
 
-        for word in self.QUESTION_WORDS:
-            split_1 = self.question.lower().split(word)
+        if len(place) > 0:
+            return " ".join(place)
+        else:
+            return None
 
-            if len(split_1) > 1:
-                parse_1 = split_1[1]
+    def _filter_question(self):
 
-                place = parse_1.split(' ?')[0]
-                break
+        place = []
+
+        splited_question = self.question.lower().split(' ')
+
+        for word in splited_question:
+            if (word not in STOPWORDS
+                and word not in self.SUBJECTS
+                and word not in self.PUNCTUATIONS
+                and word not in self.OTHERS_WORDS):
+                place.append(word)
 
         return place

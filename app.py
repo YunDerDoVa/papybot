@@ -28,7 +28,6 @@ def ajax():
         question = dict['question'],
         place = dict['place'],
         location = dict['location'],
-        maps = dict['maps'],
         wiki = dict['wiki'],
         wiki_link = dict['wiki_link'],
         hello = dict['hello'],
