@@ -8,4 +8,4 @@
 - Petite démo + responsive + footer (plus architecture)
 - Points marquants
 - Test
-- Coverage
+- Coverage (87.4%)
